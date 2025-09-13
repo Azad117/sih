@@ -7,4 +7,16 @@ export default defineConfig({
       react(),
       tailwindcss(), // Add the plugin here
     ],
+    server: {
+    // This is the proxy configuration
+    proxy: {
+      // Any request starting with '/api' will be proxied
+      '/api': {
+        // The target is your NestJS backend server
+        target: 'http://localhost:3000',
+        // This is important for virtual hosts
+        changeOrigin: true,
+      },
+    },
+  },
   });
